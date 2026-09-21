@@ -1,6 +1,5 @@
 package com.example.andoridinvasion
 
-import android.R.attr.text
 import androidx.compose.ui.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,7 +23,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -50,6 +49,8 @@ class MainActivity : ComponentActivity() {
                             Modifier
                                 .weight(0.5f)
                         )
+
+//                        GameOverScreen()
                     }
                 }
             }
@@ -81,21 +82,13 @@ class MainActivity : ComponentActivity() {
                     fontWeight = FontWeight.Bold
                 )
 
-                AndroidIcon(
-                    modifier = Modifier
-                        .size(20.dp),
-                    color = Color.Green
-                )
-                AndroidIcon(
-                    modifier = Modifier
-                        .size(20.dp),
-                    color = Color.Green
-                )
-                AndroidIcon(
-                    modifier = Modifier
-                        .size(20.dp),
-                    color = Color.Green
-                )
+                for (numero in 1..3){
+                    AndroidIcon(
+                        modifier = Modifier
+                            .size(20.dp),
+                        color = Color.Green
+                    )
+                }
             }
         }
     }
@@ -122,32 +115,18 @@ class MainActivity : ComponentActivity() {
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
-            AndroidIcon(
-                modifier = Modifier
-                    .size(70.dp),
-                color = Color.Green
-            )
-            AndroidIcon(
-                modifier = Modifier
-                    .size(70.dp),
-                color = Color.Red
-            )
-            AndroidIcon(
-                modifier = Modifier
-                    .size(70.dp),
-                color = Color.Blue
-            )
-            AndroidIcon(
-                modifier = Modifier
-                    .size(70.dp),
-                color = Color.Yellow
-            )
-            AndroidIcon(
-                modifier = Modifier
-                    .size(70.dp),
-                color = Color.Green
+
+            val cores: List<Color> = listOf(
+                Color.Green, Color.Red, Color.Blue, Color.Yellow, Color.Green
             )
 
+            for (cor in cores){
+                AndroidIcon(
+                    modifier = Modifier
+                        .size(70.dp),
+                    color = cor
+                )
+            }
         }
     }
 
@@ -195,6 +174,26 @@ class MainActivity : ComponentActivity() {
                 fontWeight = FontWeight.Bold,
                 color = corTexto,
                 textAlign = TextAlign.Center
+            )
+        }
+    }
+
+    @Composable
+    fun GameOverScreen(modifier: Modifier = Modifier) {
+        Box(
+            modifier = modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            AndroidRow()
+            Text(
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .padding(0.dp, 40.dp, 0.dp, 0.dp),
+                text= "GAME OVER",
+                fontSize = 73.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
             )
         }
     }
